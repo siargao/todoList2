@@ -26,8 +26,8 @@ class TodoList extends Component {
             });
         }
 
-        this._inputelement.value = '';
-        
+        this._inputElement.value = '';
+
         console.log(this.state.items);
     }
 
@@ -36,7 +36,7 @@ class TodoList extends Component {
             <div className='todoListMain'>
                 <div className='header'>
                     <form onSubmit={this.addItem}>
-                        <input ref={(a) => this.inputElement = a} placeholder='Enter Task'>
+                        <input ref={(a) => this._inputElement = a} placeholder='Enter Task'>
                         </input >
                         <button type='submit'>Submit</button>
                     </form>
