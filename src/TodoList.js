@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TodoItems from "./TodoItems";
 
 class TodoList extends Component {
 
@@ -13,27 +14,27 @@ class TodoList extends Component {
     }
 
     addItem(e) {
-        if (this._inputElement.value !== "") {
-            var newItem = {
-                text: this._inputElement.value,
-                key: Date.now(),
-            };
+        const itemArray = this.state.items;
 
-            this.setState((prevState) => {
-                return {
-                    items: prevState.items.concat(newItem)
-                };
-            });
-        }
+        itemArray.push({
+            text: this._inputElement.value,
+            key: Date.now(),
+        });
 
-        this._inputElement.value = '';
-
+        this.setState({
+            items: itemArray,
+        });
         console.log(this.state.items);
+
+        //override the default onSubmit event which triggers the browser's default POST behaviour which we dont want
+        //which includes page refresh.
+        e.preventDefault();
     }
 
     render() {
         return (
             <div className='todoListMain'>
+                <h2> Jeff's Todo List</h2>
                 <div className='header'>
                     <form onSubmit={this.addItem}>
                         <input ref={(a) => this._inputElement = a} placeholder='Enter Task'>
@@ -41,6 +42,7 @@ class TodoList extends Component {
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
+                <TodoItems entries={this.state.items} />
             </div>
         )
     };
