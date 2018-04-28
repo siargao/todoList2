@@ -12,6 +12,7 @@ class TodoList extends Component {
         }
 
         this.addItem = this.addItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     addItem(e) {
@@ -23,15 +24,23 @@ class TodoList extends Component {
         });
 
         this.setState({
-            items: itemArray,
+            items: itemArray
         });
-        console.log(this.state.items);
 
         //override the default onSubmit event which triggers the browser's default POST behaviour which we dont want
         //which includes page refresh.
         e.preventDefault();
     }
 
+    deleteItem(key){
+        const filteredItems = this.state.items.filter(function(item){
+            return (item.key !== key);
+        });
+
+        this.setState({
+            items : filteredItems
+        });
+    }
     render() {
         return (
             <div className='todoListMain'>
@@ -43,7 +52,7 @@ class TodoList extends Component {
                         <button type='submit'>Submit</button>
                     </form>
                 </div>
-                <TodoItems entries={this.state.items} />
+                <TodoItems delete={this.deleteItem} entries={this.state.items} />
             </div>
         )
     };
