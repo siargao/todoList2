@@ -4,13 +4,9 @@ class TodoItems extends Component {
 
     constructor(props) {
         super(props);
-
-    
-
     }
    
     render() {
-
         const todoEntries = this.props.entries;
 
         function createTasks(item){
@@ -20,9 +16,9 @@ class TodoItems extends Component {
         var listItems = todoEntries.map(createTasks);
 
         return (
-            <div>
+            <ul className='theList'>
                 {listItems}
-            </div>
+            </ul>
         )
     };
 }
