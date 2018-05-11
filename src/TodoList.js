@@ -51,7 +51,7 @@ class TodoList extends Component {
                 <h2> Todo List</h2>
                 <div className='header'>
                     <form onSubmit={this.addItem}>
-                        <input ref={(a) => this.inputElement = a} placeholder='enter task'>
+                        <input ref={(e) => this.inputElement = e} placeholder='enter task'>
                         </input >
                         <button type='submit'>Submit</button>
                     </form>
